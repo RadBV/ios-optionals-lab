@@ -10,17 +10,47 @@ Fork and clone this repo. On your fork, answer and commit the follow questions. 
 Write 3 different ways of safely unwrapping and printing the value of `userName`.  If it is nil, print "No name".
 
 - Method one: Check for nil and force unwrap
+```swift
+for _ in 0...0 {
+    guard let userNameUnwrapped = userName else{
+        print("No Name")
+        break
+    }
+    print(userName!)
+}
+```
 
 - Method two: Optional binding
+```swift
+if let userNameUnwrapped = userName {
+    print(userNameUnwrapped)
+} else {
+    print("No name")
+}
+```
 
 - Method three: Nil coalescing
 
+```swift
+var unwrappedUsername = userName ?? "No Name"
+print(unwrappedUsername)
+```
 
 ## Question 2
 
 Given optional string `backgroundColor`, write code that safely unwraps and prints it. If backgroundColor is nil, give it a value.
 
 `var backgroundColor: String?`
+
+```swift
+if backgroundColor == nil {
+    var bgcUnwrapped = backgroundColor
+    bgcUnwrapped = "borple"
+    print(bgcUnwrapped!)
+} else {
+    print(backgroundColor!)
+}
+```
 
 
 ## Question 3
@@ -30,6 +60,13 @@ Given an optional width and an optional height of a rectangle, write code that c
 ```swift
 var width: Double?
 var height: Double?
+
+if let widthUnwrapped = width,
+    let heightUnwrapped = height{
+    print(widthUnwrapped * heightUnwrapped)
+} else {
+    print("Error")
+}
 ```
 
 
@@ -41,6 +78,17 @@ Given the following optional variables `name`, `age` and `height`. Write code so
 var name: String?
 var age: Int?
 var height: Double?
+
+if let nameUnwrapped = name {
+    if let ageUnwrapped = age {
+        if let heightUnwrapped = height {
+            print("\(nameUnwrapped), \(ageUnwrapped), \(heightUnwrapped)")
+            }
+        }
+    }
+} else {
+    print("error")
+}
 ```
 
 
@@ -52,6 +100,13 @@ Given the variables `firstName`, `middleName` and `lastName`. Create a variable 
 var firstName: String = "Johnny"
 var middleName: String?
 var lastName: String = "Stone"
+
+middleName = ""
+
+if var mnUwrapped = middleName {
+    print("\(firstName) \(mnUwrapped) \(lastName)")
+}
+
 ```
 
 
@@ -59,7 +114,15 @@ var lastName: String = "Stone"
 
 Write code that adds 15 to `myIntString`, then prints the sum. Use the `Int()` constructor which returns an optional Int `(Int?)`.
 
-`let myIntString = "35"`
+```swift
+let myIntString = "35"
+var answer = Int(myIntString)
+
+if var answerUnrapped = answer {
+    answerUnrapped += 15
+    print(answerUnrapped)
+}
+```
 
 
 ## Question 7
@@ -84,6 +147,10 @@ var tuple: (Int, Int)?
 if Bool.random() {
  tuple = (5, 3)
 }
+
+if let unwrappedTuple = tuple {
+print(unwrappedTuple)
+}
 ```
 
 
@@ -94,7 +161,13 @@ Write code that either doubles `myInt` and then prints it, or prints an error me
 ```swift
 let myInt: Int?
 if Bool.random() {
- myInt = 5
+    myInt = 5
+    if var myIntUnwrapped = myInt {
+        myIntUnwrapped += myIntUnwrapped
+        print(myIntUnwrapped)   
+    }
+} else {
+    print("ERROR ZIP ZORP")
 }
 ```
 
@@ -121,7 +194,13 @@ Determine if the variable contains a Boolean or nil value. If nil set the variab
 var isTheGreatest: Bool?
 
 if Bool.random() {
- isTheGreatest = true
+    isTheGreatest = true
+    if let gbUnwrapped = isTheGreatest{
+        print(gbUnwrapped)
+    }
+} else {
+    isTheGreatest = false
+    print(isTheGreatest!)
 }
 ```
 
@@ -132,13 +211,24 @@ Given the code below print the sum of each non-nil element in `myTuple`.
 
  ```swift
 var myTuple: (Int?, Int?, Int?, Int?)
+var container = 0
 
 if Bool.random() {
- myTuple.0 = 5
- myTuple.2 = 14
+    myTuple.0 = 5
+    myTuple.2 = 14
+    if let mtUnwrapped0 = myTuple.0, let mtUnwrapped2 = myTuple.2{
+        container += mtUnwrapped0
+        container += mtUnwrapped2
+        print(container)
+    }
 } else {
- myTuple.1 = 9
- myTuple.3 = 10
+    myTuple.1 = 9
+    myTuple.3 = 10
+    if let mtUnwrapped1 = myTuple.1, let mtUnwrapped3 = myTuple.3{
+        container += mtUnwrapped1
+        container += mtUnwrapped3
+        print(container)
+    }
 }
 ```
 
